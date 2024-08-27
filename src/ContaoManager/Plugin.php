@@ -21,7 +21,7 @@ class Plugin implements BundlePluginInterface
     public function getBundles(ParserInterface $parser)
     {
         return [
-            BundleConfig::create('Bcs\MemberAutoActivateBundleBundle\BcsMemberAutoActivateBundle')
+            BundleConfig::create('Bcs\MemberAutoActivateBundle\BcsMemberAutoActivateBundle')
                 ->setLoadAfter(['Contao\CoreBundle\ContaoCoreBundle']),
         ];
     }
