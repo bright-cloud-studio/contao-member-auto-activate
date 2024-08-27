@@ -12,6 +12,14 @@ class MemberHooks
     // When a form is submitted
     public function onCreateNewUser($userId, $userData, $module)
     {
+        echo "Hook Hit!";
+        die();
+        
+        
+        
+        
+        
+        /*
         $boolActivate = FALSE;
 
 		if ($objModule->reg_autoActivate) {
@@ -45,6 +53,7 @@ class MemberHooks
 				}
 			}
 		}
+		*/
 
 
         
