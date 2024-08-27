@@ -1,0 +1,28 @@
+<?php
+
+/**
+ * @copyright  Bright Cliud Studio
+ * @author     Bright Cloud Studio
+ * @package    Contao Member Auto Activate
+ * @license    LGPL-3.0+
+ * @see	       https://github.com/bright-cloud-studio/contao-member-auto-activate
+ */
+
+namespace Bcs\MemberAutoActivateBundle\ContaoManager;
+use Contao\ManagerPlugin\Bundle\Config\BundleConfig;
+use Contao\ManagerPlugin\Bundle\BundlePluginInterface;
+use Contao\ManagerPlugin\Bundle\Parser\ParserInterface;
+
+class Plugin implements BundlePluginInterface
+{
+    /**
+     * {@inheritdoc}
+     */
+    public function getBundles(ParserInterface $parser)
+    {
+        return [
+            BundleConfig::create('Bcs\MemberAutoActivateBundleBundle\BcsMemberAutoActivateBundle')
+                ->setLoadAfter(['Contao\CoreBundle\ContaoCoreBundle']),
+        ];
+    }
+}
