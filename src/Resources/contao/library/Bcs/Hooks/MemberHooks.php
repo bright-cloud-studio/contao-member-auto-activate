@@ -14,6 +14,8 @@ class MemberHooks
     {
 
         $boolActivate = FALSE;
+        echo "TEST: " . $boolActivate;
+        die();
 
 		if ($objModule->reg_autoActivate) {
 			if ($objModule->reg_autoActivateDomains != '') {
@@ -28,6 +30,15 @@ class MemberHooks
 				$boolActivate = TRUE;
 			}
 		}
+		
+		
+		echo "boolActivate: " . $boolActivate . "<br>";
+		echo "reg_autoActivate: " . $objModule->reg_autoActivate . "<br>";
+		echo "reg_autoActivateDomains: " . $objModule->reg_autoActivateDomains . "<br>";
+		die();
+		
+		
+		
 
 		if ($boolActivate) {
 			$objMember = MemberModel::findByIdOrAlias($intId);
