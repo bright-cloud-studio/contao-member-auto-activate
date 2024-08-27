@@ -9,4 +9,4 @@
 */
 
 /* Hooks */
-$GLOBALS['TL_HOOKS']['processFormData'][]        = array('Bcs\Hooks\MemberHooks', 'onCreateNewUser');
+$GLOBALS['TL_HOOKS']['createNewUser'][]        = array('Bcs\Hooks\MemberHooks', 'onCreateNewUser');
