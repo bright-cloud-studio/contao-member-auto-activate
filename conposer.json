@@ -1,0 +1,41 @@
+{
+    "name":"bright-cloud-studio/contao-member-auto-activate",
+    "description":"Allows new Member accounts to be activated automatically during registration.",
+    "keywords": ["contao", "member", "auto", "activate", "bright", "cloud", "studio"],
+    "type": "contao-bundle",
+    "homepage": "http://brightcloudstudio.com/",
+    "license": "LGPL-3.0+",
+    "authors":[
+        {
+            "name": "Bright Cloud Studio",
+            "homepage": "https://brightcloudstudio.com",
+            "email": "mark@brightcloudstudio.com",
+            "role": "Developer"
+        }
+    ],
+    "support":{
+        "issues": "https://github.com/bright-cloud-studio/contao-member-auto-activate/issues",
+        "source": "https://github.com/bright-cloud-studio/contao-member-auto-activate"
+    },
+    "require":{
+        "php": "^8.1",
+        "contao/core-bundle": "^5.3"
+    },
+    "extra":{
+        "contao-manager-plugin": "Bcs\\MemberAutoActivateBundle\\ContaoManager\\Plugin"
+    },
+    "autoload": {
+        "psr-4": {
+            "Bcs\\MemberAutoActivateBundle\\": "src"
+        },
+        "classmap": [
+            "src/Resources/contao"
+        ],
+        "exclude-from-classmap": [
+            "src/Resources/contao/config/",
+            "src/Resources/contao/dca/",
+            "src/Resources/contao/languages/",
+            "src/Resources/contao/templates/"
+        ]
+    }
+}
