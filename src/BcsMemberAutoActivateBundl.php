@@ -3,12 +3,12 @@
 /**
  * @copyright  Bright Cliud Studio
  * @author     Bright Cloud Studio
- * @package    Contao Member Auto Activate
+ * @package    GAI Payment Dashboard
  * @license    LGPL-3.0+
- * @see	       https://github.com/bright-cloud-studio/contao-member-auto-activate
+ * @see	       https://github.com/bright-cloud-studio/contao-ce-recaptcha
  */
 
-namespace Bcs\PBundle;
+namespace Bcs\MemberAutoActivateBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
