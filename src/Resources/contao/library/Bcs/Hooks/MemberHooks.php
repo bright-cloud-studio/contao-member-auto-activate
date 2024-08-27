@@ -4,21 +4,24 @@ namespace Bcs\Hooks;
 
 use Contao\Frontend;
 use Contao\MemberModel;
+use Contao\System;
 
 class MemberHooks
 {
     protected static $arrUserOptions = array();
 
     // When a form is submitted
-    public function onCreateNewUser($userId, $userData, $module)
+    public function onCreateNewUser($intId, $arrData, $objModule)
     {
-
+        
+        // Track if we want to activate this Member or not
         $boolActivate = FALSE;
-        echo "TEST: " . $boolActivate;
-        die();
 
+        // If "Auto Activate" it checked on our Registration module
 		if ($objModule->reg_autoActivate) {
+		    // If the domain list is not empty
 			if ($objModule->reg_autoActivateDomains != '') {
+			    // Loop through the listed domains to see if they match the new member
 				list($emailUser, $emailDomain) = explode("@", $arrData['email']);
 				$arrDomains = preg_split("/\\r\\n|\\r|\\n/", $objModule->reg_autoActivateDomains);
 				foreach($arrDomains as $domain) {
@@ -27,24 +30,19 @@ class MemberHooks
 					}
 				}
 			} else {
+			    // If there are no domains listed, but "Auto Activate" is checked, proceed with Activation
 				$boolActivate = TRUE;
 			}
 		}
-		
-		
-		echo "boolActivate: " . $boolActivate . "<br>";
-		echo "reg_autoActivate: " . $objModule->reg_autoActivate . "<br>";
-		echo "reg_autoActivateDomains: " . $objModule->reg_autoActivateDomains . "<br>";
-		die();
-		
-		
-		
 
+        // If we are going to activate our new Member
 		if ($boolActivate) {
+		    
+		    // Find this Member, as this hook is triggered after the Member is created
 			$objMember = MemberModel::findByIdOrAlias($intId);
-			// Update the account
-			$objMember->disable = '';
-			$objMember->activation = '';
+			// Setting 'disable' to 0 means it is activated, 1 means inactive
+			$objMember->disable = 0;
+			// Save our modified member
 			$objMember->save();
 
 			// HOOK: post activation callback
@@ -52,13 +50,10 @@ class MemberHooks
 			{
 				foreach ($GLOBALS['TL_HOOKS']['activateAccount'] as $callback)
 				{
-					$this->import($callback[0]);
-					$this->{$callback[0]}->{$callback[1]}($objMember, $this);
+					System::importStatic($callback[0])->{$callback[1]}($objMember, $this);
 				}
 			}
 		}
-
-
         
     }
 
